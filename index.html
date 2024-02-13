@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name=viewport content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="">
+		<title>Título</title>
+		<script>
+
+			//simple r-p-s game
+			
+			//getComputerChoice()
+				//select random number 1-3
+				//return r, p or s, depending on random number
+
+			//playRound(playerSelection, computerSelection)
+				//if playerSelection is
+					//r, then
+						//if computerSelection is
+							//r, then return tie
+							//p, then return lose
+							//s, then return win
+					//p, then
+						//if computerSelection is
+							//r, then return win
+							//p, then return tie
+							//s, then return lose
+					//s, then
+						//if computerSelection is
+							//r, then return lose
+							//p, then return win
+							//s, then return tie
+
+			//playGame()
+				//set playerScore and computerScore to 0
+
+				//repeat 5 times
+					//set playerSelection to prompt(asdf)
+					//set computerSelection to getComputerChoice()
+					//if playRound(playerSelection, computerSelection) is win, then 
+						//display win and add 1 to playerScore and continue
+					//if not, then 
+						//display lose and add 1 to computerScore and continue
+					//display tie and continue
+
+				//if playerScore is equal to  computerScore, then
+					//display tie and return
+				//if playerScore is more than computerScore, then
+					//display win and return
+				//display lose and return
+
+			function iGetComputerChoice() {
+				const iRandIndex = Math.floor(Math.random() * 3);
+				switch (iRandIndex) {
+					case 0:
+						return 'r';
+						break;
+					case 1:
+						return 'p';
+						break;
+					case 2:
+						return 's';
+						break;
+				}
+			}
+
+			function bPlayRound() {
+
+			}
+			
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>
