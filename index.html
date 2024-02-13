@@ -9,49 +9,56 @@
 		<title>Título</title>
 		<script>
 
-			//simple r-p-s game
+			/*
+			simple r-p-s game
 			
-			//getComputerChoice()
-				//select random number 1-3
-				//return r, p or s, depending on random number
+			getComputerChoice()
+				select random number 1-3
+				return r, p or s, depending on random number
 
-			//playRound(playerSelection, computerSelection)
-				//if playerSelection is
-					//r, then
-						//if computerSelection is
-							//r, then return tie
-							//p, then return lose
-							//s, then return win
-					//p, then
-						//if computerSelection is
-							//r, then return win
-							//p, then return tie
-							//s, then return lose
-					//s, then
-						//if computerSelection is
-							//r, then return lose
-							//p, then return win
-							//s, then return tie
+			getPlayerChoice()
+				set input from prompt(asdf)
+				if input not ok, then set to 'r'
+				return input
 
-			//playGame()
-				//set playerScore and computerScore to 0
+			playRound(playerSelection, computerSelection)
+				if playerSelection is
+					r, then
+						if computerSelection is
+							r, then return tie
+							p, then return lose
+							s, then return win
+					p, then
+						if computerSelection is
+							r, then return win
+							p, then return tie
+							s, then return lose
+					s, then
+						if computerSelection is
+							r, then return lose
+							p, then return win
+							s, then return tie
 
-				//repeat 5 times
-					//set playerSelection to prompt(asdf)
-					//set computerSelection to getComputerChoice()
-					//if playRound(playerSelection, computerSelection) is win, then 
-						//display win and add 1 to playerScore and continue
-					//if not, then 
-						//display lose and add 1 to computerScore and continue
-					//display tie and continue
+			playGame()
+				set playerScore and computerScore to 0
 
-				//if playerScore is equal to  computerScore, then
-					//display tie and return
-				//if playerScore is more than computerScore, then
-					//display win and return
-				//display lose and return
+				repeat 5 times
+					set playerSelection to prompt(asdf)
+					set computerSelection to getComputerChoice()
+					if playRound(playerSelection, computerSelection) is win, then 
+						display win and add 1 to playerScore and continue
+					if not, then 
+						display lose and add 1 to computerScore and continue
+					display tie and continue
 
-			function iGetComputerChoice() {
+				if playerScore is equal to  computerScore, then
+					display tie and return
+				if playerScore is more than computerScore, then
+					display win and return
+				display lose and return
+			*/
+
+			function cGetComputerChoice() {
 				const iRandIndex = Math.floor(Math.random() * 3);
 				switch (iRandIndex) {
 					case 0:
@@ -63,12 +70,122 @@
 					case 2:
 						return 's';
 						break;
+				} //end switch
+			} //end function
+
+			function cGetPlayerChoice() {
+
+				playerResponse = prompt("R/p/s: ");
+				if (!playerResponse) {
+					return 'r';
+				} //end if
+
+				switch (playerResponse) {
+					case 'r':
+					case 'rock':
+						return 'r';
+						break;
+					case 'p':
+					case 'paper':
+						return 'p';
+						break;
+					case 's':
+					case 'scissors':
+						return 's';
+						break;
+					default:
+						return 'r';
+						break;
 				}
 			}
 
-			function bPlayRound() {
+			function bPlayRound(cPlayerSelection, cComputerSelection) {
+				switch (cPlayerSelection) {
+					case 'r':
+						switch (cComputerSelection) {
+							case 'r':
+								return null;
+								break;
+							case 'p':
+								return false;
+								break;
+							case 's':
+								return true;
+								break;
+						} //end switch 2
+						break;
+					case 'p':
+						switch (cComputerSelection) {
+							case 'r':
+								return true;
+								break;
+							case 'p':
+								return null;
+								break;
+							case 's':
+								return false;
+								break;
+						} //end switch 2
+						break;
+					case 's':
+						switch (cComputerSelection) {
+							case 'r':
+								return false;
+								break;
+							case 'p':
+								return true;
+								break;
+							case 's':
+								return null;
+								break;
+						} //end switch 2
+						break;
+				} //end switch 1
+			} //end function
 
-			}
+			function vPlayGame() {
+
+				let iPlayerScore = 0;
+				let iComputerScore = 0;
+
+				for (iIndex = 1; iIndex <= 5; iIndex++) {
+
+					console.log("PLAYER SCORE: " + iPlayerScore);
+					console.log("COMPUTER SCORE: " + iComputerScore);
+
+					const cPlayerSelection = cGetPlayerChoice();
+					const cComputerSelection = cGetComputerChoice();
+					console.log("PLAYER SELECTION: " + cPlayerSelection);
+					console.log("COMPUTER SELECTION: " + cComputerSelection);
+
+					bRoundResult = bPlayRound(cPlayerSelection, cComputerSelection);
+					if (bRoundResult === true) {
+						console.log("WIN. PLAYER +1");
+						iPlayerScore++;
+						continue;
+					} else if (bRoundResult === false) {
+						console.log("LOSE. COMPUTER +1");
+						iComputerScore++;
+						continue;
+					} //end if
+					console.log("TIE. NOTHING.");
+				} //end for
+
+				console.log("PLAYER SCORE: " + iPlayerScore);
+				console.log("COMPUTER SCORE: " + iComputerScore);
+
+				if (iPlayerScore === iComputerScore) {
+					console.log("TIE. VOID.");
+					return;
+				} //end if
+				if (iPlayerScore > iComputerScore) {
+					console.log("WIN. CONGRATULATIONS.");
+					return;
+				} //end if
+				console.log("LOSE. LOSER.");
+			} //end function
+
+			vPlayGame();
 			
 		</script>
 	</head>
