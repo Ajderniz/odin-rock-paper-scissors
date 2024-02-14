@@ -100,47 +100,19 @@
 			}
 
 			function bPlayRound(cPlayerSelection, cComputerSelection) {
-				switch (cPlayerSelection) {
-					case 'r':
-						switch (cComputerSelection) {
-							case 'r':
-								return null;
-								break;
-							case 'p':
-								return false;
-								break;
-							case 's':
-								return true;
-								break;
-						} //end switch 2
-						break;
-					case 'p':
-						switch (cComputerSelection) {
-							case 'r':
-								return true;
-								break;
-							case 'p':
-								return null;
-								break;
-							case 's':
-								return false;
-								break;
-						} //end switch 2
-						break;
-					case 's':
-						switch (cComputerSelection) {
-							case 'r':
-								return false;
-								break;
-							case 'p':
-								return true;
-								break;
-							case 's':
-								return null;
-								break;
-						} //end switch 2
-						break;
-				} //end switch 1
+
+				if (cPlayerSelection === cComputerSelection) {
+					return null;
+				} //end if
+
+				if ((cPlayerSelection === 'r' && cComputerSelection === 's') ||
+					(cPlayerSelection === 'p' && cComputerSelection === 'r') ||
+					(cPlayerSelection === 's' && cComputerSelection === 'p')) {
+					return true;
+				} //end if
+
+				return false;
+
 			} //end function
 
 			function vPlayGame() {
