@@ -22,22 +22,15 @@
 				return input
 
 			playRound(playerSelection, computerSelection)
-				if playerSelection is
-					r, then
-						if computerSelection is
-							r, then return tie
-							p, then return lose
-							s, then return win
-					p, then
-						if computerSelection is
-							r, then return win
-							p, then return tie
-							s, then return lose
-					s, then
-						if computerSelection is
-							r, then return lose
-							p, then return win
-							s, then return tie
+				if playerSelection is equal to computerSelection, then
+					return tie
+
+				if playerSelection is 'r' and computerSelection is 's' or
+				   playerSelection is 'p' and computerSelection is 'r' or
+				   playerSelection is 's' and computerSelection is 'p', then
+					return win
+
+				no tie, no win, so return lose
 
 			playGame()
 				set playerScore and computerScore to 0
